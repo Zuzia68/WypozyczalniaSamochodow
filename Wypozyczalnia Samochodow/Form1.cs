@@ -22,6 +22,8 @@ namespace Wypozyczalnia_Samochodow
             WyswietlSamochody w1 = new WyswietlSamochody();
             this.Hide();//
             w1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+
+
         }
     }
 }

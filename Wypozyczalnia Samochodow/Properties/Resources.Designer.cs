@@ -63,9 +63,59 @@ namespace Wypozyczalnia_Samochodow.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap licznik {
+        internal static System.Drawing.Bitmap FerrariMyLogo {
             get {
-                object obj = ResourceManager.GetObject("licznik", resourceCulture);
+                object obj = ResourceManager.GetObject("FerrariMyLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FerrariMyLogo1 {
+            get {
+                object obj = ResourceManager.GetObject("FerrariMyLogo1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FordMyLogo {
+            get {
+                object obj = ResourceManager.GetObject("FordMyLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lamboorghini2 {
+            get {
+                object obj = ResourceManager.GetObject("Lamboorghini2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NissanMyLogo {
+            get {
+                object obj = ResourceManager.GetObject("NissanMyLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PorscheMyLogo {
+            get {
+                object obj = ResourceManager.GetObject("PorscheMyLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
