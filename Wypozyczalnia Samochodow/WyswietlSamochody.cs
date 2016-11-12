@@ -44,6 +44,9 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
+                WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
+                WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
+                WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
 
@@ -65,6 +68,9 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
+                WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
+                WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
+                WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
 
@@ -81,6 +87,10 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
+                WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
+                WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
+                WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
+                
             }
         }
 
@@ -97,6 +107,9 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
+                WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
+                WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
+                WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
 
@@ -113,6 +126,9 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
+                WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
+                WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
+                WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
 
@@ -129,6 +145,9 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
+                WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
+                WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
+                WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
 
