@@ -46,6 +46,20 @@ namespace Wypozyczalnia_Samochodow
             d1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
         }
 
+        private void button3_Click(object sender, EventArgs e)//Przycisk wyswietl klientow
+        {
+            DodajKlientow dk = new DodajKlientow();
+            this.Hide();//
+            dk.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ModyfikacjaKlientow mk = new ModyfikacjaKlientow();
+            this.Hide();//
+            mk.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
+
         
     }
 }

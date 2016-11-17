@@ -67,5 +67,10 @@ namespace Wypozyczalnia_Samochodow
             }
             
         }
+
+        private void DodajSamochody_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

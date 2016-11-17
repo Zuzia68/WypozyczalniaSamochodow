@@ -211,6 +211,7 @@
             this.Controls.Add(this.WyswietlDG1);
             this.Name = "DodajSamochody";
             this.Text = "DodajSamochody";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DodajSamochody_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.WyswietlDG1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

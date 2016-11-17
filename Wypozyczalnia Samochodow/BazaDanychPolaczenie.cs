@@ -16,15 +16,15 @@ namespace Wypozyczalnia_Samochodow
         private string database;
         private string uid;
         private string password;
-        
-        
+
+
 
         //Constructor
         public BazaDanychPolaczenie()
         {
             Initialize();
-            
-            
+
+
         }
 
         #region inicjalizacja połączenia z zewnętrzną bazą danych
@@ -36,9 +36,9 @@ namespace Wypozyczalnia_Samochodow
             password = "BAjE3byDQnjQuZ3L";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-            connection = new MySqlConnection(connectionString);        
+            connection = new MySqlConnection(connectionString);
         }
-#endregion
+        #endregion
 
         #region otworzenie połączenia z zewnętrzną bazą danych
         private bool OpenConnection()
@@ -55,7 +55,7 @@ namespace Wypozyczalnia_Samochodow
                 //The two most common error numbers when connecting are as follows:
                 //0: Cannot connect to server.
                 //1045: Invalid user name and/or password.
-                
+
                 switch (ex.Number)
                 {
                     case 0:
@@ -85,7 +85,7 @@ namespace Wypozyczalnia_Samochodow
                 return false;
             }
         }
-#endregion
+        #endregion
 
         #region Wyswietlenie danych z tabeli dla przycisku Ford
         public List<string>[] SelectFord()
@@ -108,7 +108,7 @@ namespace Wypozyczalnia_Samochodow
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                
+
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
@@ -148,7 +148,7 @@ namespace Wypozyczalnia_Samochodow
             list[3] = new List<string>();
             list[4] = new List<string>();
             list[5] = new List<string>();
-            
+
             //Open connection
             if (this.OpenConnection() == true)
             {
@@ -376,19 +376,19 @@ namespace Wypozyczalnia_Samochodow
         }
         #endregion
         //Delete statement
-public void Delete(string MDK)
-{
-    
-    //string query = ("DELETE from NaszeSamochody WHERE Model='" + MDK + "';");
-    string query = "DELETE FROM NaszeSamochody WHERE Model=" + MDK + "";
-    MessageBox.Show("Mialem usunac MDK ale mi sie nie chce! jego wartosc to" + MDK + "");
+        public void Delete(string MDK)
+        {
 
-    if (this.OpenConnection() == true)
-    {
-        MySqlCommand cmd = new MySqlCommand(query, connection);
-        
-        this.CloseConnection();
-    } /*
+            //string query = ("DELETE from NaszeSamochody WHERE Model='" + MDK + "';");
+            string query = "DELETE FROM NaszeSamochody WHERE Model=" + MDK + "";
+            MessageBox.Show("Mialem usunac MDK ale mi sie nie chce! jego wartosc to" + MDK + "");
+
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                this.CloseConnection();
+            } /*
     string query = "DELETE FROM NaszeSamochody WHERE Model='R35'"; to mi dzialalo
 
     if (this.OpenConnection() == true)
@@ -397,43 +397,128 @@ public void Delete(string MDK)
         cmd.ExecuteNonQuery();
         this.CloseConnection();
     }*/
-}
-//Insert statement
-public void DodawanieSamochodow(string marka, string model, string kolor, int rocznik, float cena)
-{
-    string query = "INSERT INTO NaszeSamochody (Marka,Model,Kolor,Rocznik,CenaZaGodzine) VALUES('" + marka + "','"+model+"','"+kolor+"',"+rocznik+","+cena+")";
+        }
+        //Insert statement
+        public void DodawanieSamochodow(string marka, string model, string kolor, int rocznik, float cena)
+        {
+            string query = "INSERT INTO NaszeSamochody (Marka,Model,Kolor,Rocznik,CenaZaGodzine) VALUES('" + marka + "','" + model + "','" + kolor + "'," + rocznik + "," + cena + ")";
 
-    //open connection
-    if (this.OpenConnection() == true)
-    {
-        //create command and assign the query and connection from the constructor
-        MySqlCommand cmd = new MySqlCommand(query, connection);
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
 
-        //Execute command
-        cmd.ExecuteNonQuery();
+                //Execute command
+                cmd.ExecuteNonQuery();
 
-        //close connection
-        this.CloseConnection();
+                //close connection
+                this.CloseConnection();
+            }
+        }
+        public void UsuwanieSamochodow(int MDK)
+        {
+
+            // string query = "delete from NaszeSamochody WHERE Model=('" + MDK + "')";
+            string query = "delete from NaszeSamochody WHERE idSamochodu=('" + MDK + "')";
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+            }
+        }
+        #region Wyswietlanie wszystkich Klientow
+        public List<string>[] SelectALLKlienci()
+        {
+            string query = "SELECT * FROM Klienci";
+
+            //Create a list to store the result
+            List<string>[] list = new List<string>[4];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+            list[2] = new List<string>();
+            list[3] = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["idKlienta"] + "");
+                    list[1].Add(dataReader["Imie"] + "");
+                    list[2].Add(dataReader["Nazwisko"] + "");
+                    list[3].Add(dataReader["NumerTelefonu"] + "");
+
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+        #endregion
+        #region Dodawanie nowych Klientów
+        public void DodawanieKlientow(string imie, string nazwisko, string telefon)
+        {
+            string query = "INSERT INTO Klienci (Imie,Nazwisko,NumerTelefonu) VALUES('" + imie + "','" + nazwisko + "','" + telefon + "')";
+
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+            }
+        }
+        #endregion
+            public void UsuwanieKlientow(int idKlientaUsuwanego)
+        {
+
+            // string query = "delete from NaszeSamochody WHERE Model=('" + MDK + "')";
+            
+            string query = "delete from Klienci WHERE idKlienta=('" + idKlientaUsuwanego + "')";
+            
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+            }
+        }
+
+        }
     }
-}
-public void UsuwanieSamochodow(int MDK)
-{
-    
-   // string query = "delete from NaszeSamochody WHERE Model=('" + MDK + "')";
-    string query = "delete from NaszeSamochody WHERE idSamochodu=('" + MDK + "')";
-    //open connection
-    if (this.OpenConnection() == true)
-    {
-        //create command and assign the query and connection from the constructor
-        MySqlCommand cmd = new MySqlCommand(query, connection);
 
-        //Execute command
-        cmd.ExecuteNonQuery();
-
-        //close connection
-        this.CloseConnection();
-    }
-}
-        
-    }
-}
