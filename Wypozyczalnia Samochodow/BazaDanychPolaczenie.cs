@@ -18,16 +18,12 @@ namespace Wypozyczalnia_Samochodow
         private string password;
 
 
-
+        #region inicjalizacja połączenia z zewnętrzną bazą danych
         //Constructor
         public BazaDanychPolaczenie()
         {
             Initialize();
-
-
         }
-
-        #region inicjalizacja połączenia z zewnętrzną bazą danych
         private void Initialize()
         {
             server = "bartuszak.pl";
@@ -135,6 +131,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Wyswietlenie danych z tabeli dla przycisku Nissan
         public List<string>[] SelectNissan()
         {
@@ -183,6 +180,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Wyswietlenie danych z tabeli dla przycisku Lamborghini
         public List<string>[] SelectLamborghini()
         {
@@ -231,6 +229,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Wyswietlenie danych z tabeli dla przycisku Ferrari
         public List<string>[] SelectFerrari()
         {
@@ -279,6 +278,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Wyswietlenie danych z tabeli dla przycisku Porsche
         public List<string>[] SelectPorsche()
         {
@@ -327,6 +327,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Wyswietlanie wszystkich samochodow
         public List<string>[] SelectWszystkie()
         {
@@ -375,30 +376,8 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
-        //Delete statement
-        public void Delete(string MDK)
-        {
 
-            //string query = ("DELETE from NaszeSamochody WHERE Model='" + MDK + "';");
-            string query = "DELETE FROM NaszeSamochody WHERE Model=" + MDK + "";
-            MessageBox.Show("Mialem usunac MDK ale mi sie nie chce! jego wartosc to" + MDK + "");
-
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                this.CloseConnection();
-            } /*
-    string query = "DELETE FROM NaszeSamochody WHERE Model='R35'"; to mi dzialalo
-
-    if (this.OpenConnection() == true)
-    {
-        MySqlCommand cmd = new MySqlCommand(query, connection);
-        cmd.ExecuteNonQuery();
-        this.CloseConnection();
-    }*/
-        }
-        //Insert statement
+        #region Dodawanie nowych samochodów
         public void DodawanieSamochodow(string marka, string model, string kolor, int rocznik, float cena)
         {
             string query = "INSERT INTO NaszeSamochody (Marka,Model,Kolor,Rocznik,CenaZaGodzine) VALUES('" + marka + "','" + model + "','" + kolor + "'," + rocznik + "," + cena + ")";
@@ -415,11 +394,12 @@ namespace Wypozyczalnia_Samochodow
                 //close connection
                 this.CloseConnection();
             }
-        }
+        } 
+        #endregion
+
+        #region Usuwanie samochodów
         public void UsuwanieSamochodow(int MDK)
         {
-
-            // string query = "delete from NaszeSamochody WHERE Model=('" + MDK + "')";
             string query = "delete from NaszeSamochody WHERE idSamochodu=('" + MDK + "')";
             //open connection
             if (this.OpenConnection() == true)
@@ -434,6 +414,8 @@ namespace Wypozyczalnia_Samochodow
                 this.CloseConnection();
             }
         }
+        #endregion 
+
         #region Wyswietlanie wszystkich Klientow
         public List<string>[] SelectALLKlienci()
         {
@@ -479,6 +461,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Dodawanie nowych Klientów
         public void DodawanieKlientow(string imie, string nazwisko, string telefon)
         {
@@ -498,11 +481,10 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
-            public void UsuwanieKlientow(int idKlientaUsuwanego)
-        {
 
-            // string query = "delete from NaszeSamochody WHERE Model=('" + MDK + "')";
-            
+        #region Usuwanie klientów z bazy
+        public void UsuwanieKlientow(int idKlientaUsuwanego)
+        {
             string query = "delete from Klienci WHERE idKlienta=('" + idKlientaUsuwanego + "')";
             
             //open connection
@@ -518,7 +500,23 @@ namespace Wypozyczalnia_Samochodow
                 this.CloseConnection();
             }
         }
+        #endregion
+        public void AktualizacjaDanych(int IdZmiany, string imie, string nazwisko, string telefon)
+        {
+            string query = "UPDATE Klienci SET Imie=('"+imie+"') , Nazwisko=('"+nazwisko+"'), NumerTelefonu=('"+telefon+"') WHERE idKlienta=('" + IdZmiany + "')";
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
 
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+            }
         }
     }
+}
 

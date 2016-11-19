@@ -23,8 +23,6 @@ namespace Wypozyczalnia_Samochodow
             WyswietlSamochody w1 = new WyswietlSamochody();
             this.Hide();//
             w1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
-
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -58,6 +56,11 @@ namespace Wypozyczalnia_Samochodow
             ModyfikacjaKlientow mk = new ModyfikacjaKlientow();
             this.Hide();//
             mk.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
+
+        private void MenuGlowne_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); //Zamknięcie aplikacji po wyłączeniu formularza
         }
 
         
