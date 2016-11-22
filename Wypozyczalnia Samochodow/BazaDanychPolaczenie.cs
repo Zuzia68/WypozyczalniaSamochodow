@@ -540,21 +540,20 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
+
         #region Wyswietlanie wypozyczen
         public List<string>[] PokazWypozyczenia()
         {
-            string query = "SELECT NaszeSamochody.Marka, NaszeSamochody.Model, Klienci.Imie, Klienci.Nazwisko, Wypozyczenia.NaIleGodzin, NaszeSamochody.CzyZwrocono FROM NaszeSamochody INNER JOIN (Klienci INNER JOIN Wypozyczenia ON Klienci.IdKlienta = Wypozyczenia.idKlienta) ON NaszeSamochody.idSamochodu = Wypozyczenia.idSamochodu";
-
-            //string query = "SELECT NaszeSamochody.Marka, NaszeSamochody.Model, Klienci.Imie, Klienci.Nazwisko, Wypozyczenia.NaIleGodzin FROM NaszeSamochody INNER JOIN (Klienci INNER JOIN Wypozyczenia ON Klienci.IdKlienta = Wypozyczenia.idKlienta) ON NaszeSamochody.idSamochodu = Wypozyczenia.idSamochodu";
+            string query = "SELECT Wypozyczenia.idWypozyczenia, NaszeSamochody.Marka, NaszeSamochody.Model, Klienci.Imie, Klienci.Nazwisko, Wypozyczenia.NaIleGodzin, NaszeSamochody.CzyZwrocono FROM NaszeSamochody INNER JOIN (Klienci INNER JOIN Wypozyczenia ON Klienci.IdKlienta = Wypozyczenia.idKlienta) ON NaszeSamochody.idSamochodu = Wypozyczenia.idSamochodu";
             //Create a list to store the result
-            List<string>[] list = new List<string>[6];
+            List<string>[] list = new List<string>[7];
             list[0] = new List<string>();
             list[1] = new List<string>();
             list[2] = new List<string>();
             list[3] = new List<string>();
             list[4] = new List<string>();
             list[5] = new List<string>();
-            
+            list[6] = new List<string>();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -567,12 +566,13 @@ namespace Wypozyczalnia_Samochodow
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["Marka"] + "");
-                    list[1].Add(dataReader["Model"] + "");
-                    list[2].Add(dataReader["Imie"] + "");
-                    list[3].Add(dataReader["Nazwisko"] + "");
-                    list[4].Add(dataReader["NaIleGodzin"] + "");
-                    list[5].Add(dataReader["CzyZwrocono"] + "");
+                    list[0].Add(dataReader["idWypozyczenia"] + "");
+                    list[1].Add(dataReader["Marka"] + "");
+                    list[2].Add(dataReader["Model"] + "");
+                    list[3].Add(dataReader["Imie"] + "");
+                    list[4].Add(dataReader["Nazwisko"] + "");
+                    list[5].Add(dataReader["NaIleGodzin"] + "");
+                    list[6].Add(dataReader["CzyZwrocono"] + "");
                    
                 }
 
@@ -592,6 +592,24 @@ namespace Wypozyczalnia_Samochodow
         }
         #endregion
 
+        #region Zmiana statusu dostępności wypożyczonego samochodu
+        public void ZmianaStatusu(int IdZmiany, string Status)
+        {
+            string query = "UPDATE NaszeSamochody SET CzyZwrocono=('" + Status + "') WHERE idSamochodu=('" + IdZmiany + "')";
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+            }
+        }
+        #endregion
 
     }
 }
