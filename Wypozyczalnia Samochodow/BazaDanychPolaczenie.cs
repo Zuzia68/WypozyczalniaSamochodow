@@ -330,9 +330,60 @@ namespace Wypozyczalnia_Samochodow
         #endregion
 
         #region Wyswietlanie wszystkich samochodow
+        //Query jest napisane głownie pod formularze gdzie potrzeba zwrócić dane wszystkich aut
         public List<string>[] SelectWszystkie()
         {
             string query = "SELECT * FROM NaszeSamochody";
+
+            //Create a list to store the result
+            List<string>[] list = new List<string>[6];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+            list[2] = new List<string>();
+            list[3] = new List<string>();
+            list[4] = new List<string>();
+            list[5] = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["idSamochodu"] + "");
+                    list[1].Add(dataReader["Marka"] + "");
+                    list[2].Add(dataReader["Model"] + "");
+                    list[3].Add(dataReader["Kolor"] + "");
+                    list[4].Add(dataReader["Rocznik"] + "");
+                    list[5].Add(dataReader["CenaZaGodzine"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+        #endregion
+
+        #region Wyswietlanie dostępnych samochodow
+        //Query jest napisane głownie do formularza WypozyczanieSamochodow gdzie muszę wyświetlić auta które faktycznie są w wypożyczalnii
+        public List<string>[] SelectDostepne()
+        {
+            string query = "SELECT * FROM NaszeSamochody where CzyZwrocono='tak'";
 
             //Create a list to store the result
             List<string>[] list = new List<string>[6];
