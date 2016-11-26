@@ -16,6 +16,7 @@ namespace Wypozyczalnia_Samochodow
         private string database;
         private string uid;
         private string password;
+  
 
 
         #region inicjalizacja połączenia z zewnętrzną bazą danych
@@ -525,6 +526,7 @@ namespace Wypozyczalnia_Samochodow
         public void WypozyczanieSamochodow(int idKlienta, int idSamochodu, int NaIleGodzin)
         {
             string query = "INSERT INTO Wypozyczenia (idSamochodu,idKlienta,NaIleGodzin) VALUES ('" + idSamochodu + "','" + idKlienta + "','" + NaIleGodzin + "')";
+            string query2 = "UPDATE NaszeSamochody Set CzyZwrocono = 'nie' where idSamochodu = ('"+idSamochodu+"')";
 
             //open connection
             if (this.OpenConnection() == true)
@@ -595,15 +597,15 @@ namespace Wypozyczalnia_Samochodow
         #region Zmiana statusu dostępności wypożyczonego samochodu
         public void ZmianaStatusu(int IdZmiany, string Status)
         {
-            string query = "UPDATE NaszeSamochody SET CzyZwrocono=('" + Status + "') WHERE idSamochodu=('" + IdZmiany + "')";
+            string query2 = "UPDATE NaszeSamochody SET CzyZwrocono=('" + Status + "') WHERE NaszeSamochody.idSamochodu=( SELECT Wypozyczenia.idSamochodu FROM Wypozyczenia WHERE Wypozyczenia.idWypozyczenia=('"+IdZmiany+"'))";
             //open connection
             if (this.OpenConnection() == true)
             {
                 //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlCommand cmd2 = new MySqlCommand(query2, connection);
 
                 //Execute command
-                cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
 
                 //close connection
                 this.CloseConnection();

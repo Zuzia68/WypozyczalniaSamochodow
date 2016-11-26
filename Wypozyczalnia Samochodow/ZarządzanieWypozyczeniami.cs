@@ -45,6 +45,7 @@ namespace Wypozyczalnia_Samochodow
             IdZmiany = int.Parse(txtIdZmiany.Text);
             Status = txtZakonczono.Text;
             dbConnect.ZmianaStatusu(IdZmiany, Status);
+            
 
             List<string>[] list;
             list = dbConnect.PokazWypozyczenia();
