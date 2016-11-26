@@ -18,7 +18,7 @@ namespace Wypozyczalnia_Samochodow
         {
             InitializeComponent();
             dbConnect = new BazaDanychPolaczenie();
-            //Select button is clicked
+            //Wyświetlenie listy wszystkich klientów wypożyczalni
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
 
@@ -41,7 +41,7 @@ namespace Wypozyczalnia_Samochodow
             telefon = txtNumerTelefonu.Text;
 
             dbConnect.DodawanieKlientow(imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
-            //Select button is clicked
+            //Ponowne wyświetlenie listy klientów, po dodaniu nowego klienta
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
 
@@ -56,6 +56,32 @@ namespace Wypozyczalnia_Samochodow
                 
             }
             
+        }
+
+        private void PowrotDoMenu_Click(object sender, EventArgs e)//Przycisk powrót do menu
+        {
+            MenuGlowne m1 = new MenuGlowne();
+            this.Hide();//
+            m1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
+
+        private void ZarzadzajKlientami_Click(object sender, EventArgs e)//Przejscie do modyfikacji danych klienta
+        {
+            ModyfikacjaKlientow md = new ModyfikacjaKlientow();
+            this.Hide();//
+            md.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
+
+        private void WypozyczAuto_Click(object sender, EventArgs e)//Przejscie do wypożyczeń samochodów
+        {
+            WypozyczanieSamochodow wyp = new WypozyczanieSamochodow();
+            this.Hide();//
+            wyp.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
+
+        private void DodajKlientow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();//Po zamknięciu formularza zamykamy aplikacje
         }
         }
     }

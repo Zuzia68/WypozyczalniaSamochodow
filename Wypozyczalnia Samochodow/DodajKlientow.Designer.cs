@@ -49,6 +49,8 @@
             // 
             // WyswietlKlientowDataG
             // 
+            this.WyswietlKlientowDataG.AllowUserToAddRows = false;
+            this.WyswietlKlientowDataG.AllowUserToDeleteRows = false;
             this.WyswietlKlientowDataG.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.WyswietlKlientowDataG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.WyswietlKlientowDataG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -58,6 +60,7 @@
             this.Telefon});
             this.WyswietlKlientowDataG.Location = new System.Drawing.Point(34, 237);
             this.WyswietlKlientowDataG.Name = "WyswietlKlientowDataG";
+            this.WyswietlKlientowDataG.ReadOnly = true;
             this.WyswietlKlientowDataG.Size = new System.Drawing.Size(443, 172);
             this.WyswietlKlientowDataG.TabIndex = 2;
             // 
@@ -99,6 +102,7 @@
             this.PowrotDoMenu.TabIndex = 7;
             this.PowrotDoMenu.Text = "Powrót do Menu Głównego";
             this.PowrotDoMenu.UseVisualStyleBackColor = true;
+            this.PowrotDoMenu.Click += new System.EventHandler(this.PowrotDoMenu_Click);
             // 
             // ZarzadzajKlientami
             // 
@@ -108,6 +112,7 @@
             this.ZarzadzajKlientami.TabIndex = 8;
             this.ZarzadzajKlientami.Text = "Modyfikacja danych Klientów";
             this.ZarzadzajKlientami.UseVisualStyleBackColor = true;
+            this.ZarzadzajKlientami.Click += new System.EventHandler(this.ZarzadzajKlientami_Click);
             // 
             // WypozyczAuto
             // 
@@ -117,6 +122,7 @@
             this.WypozyczAuto.TabIndex = 9;
             this.WypozyczAuto.Text = "Wypożycz samochód dla klienta";
             this.WypozyczAuto.UseVisualStyleBackColor = true;
+            this.WypozyczAuto.Click += new System.EventHandler(this.WypozyczAuto_Click);
             // 
             // dodajklienta
             // 
@@ -196,8 +202,10 @@
             this.Controls.Add(this.PowrotDoMenu);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.WyswietlKlientowDataG);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DodajKlientow";
             this.Text = "WyswietlKlientow";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DodajKlientow_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.WyswietlKlientowDataG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
