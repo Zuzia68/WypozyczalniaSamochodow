@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.WyswietlWypo = new System.Windows.Forms.DataGridView();
+            this.idWypozyczenia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Marka = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NaIleGodzin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZakonczonoWyp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIdZmiany = new System.Windows.Forms.TextBox();
@@ -37,13 +44,6 @@
             this.wyswietlquerry = new System.Windows.Forms.Label();
             this.AktualizacjaDanych = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.idWypozyczenia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Marka = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NaIleGodzin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ZakonczonoWyp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.WyswietlWypo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +66,48 @@
             this.WyswietlWypo.ReadOnly = true;
             this.WyswietlWypo.Size = new System.Drawing.Size(743, 155);
             this.WyswietlWypo.TabIndex = 60;
+            // 
+            // idWypozyczenia
+            // 
+            this.idWypozyczenia.HeaderText = "id Wypożyczenia";
+            this.idWypozyczenia.Name = "idWypozyczenia";
+            this.idWypozyczenia.ReadOnly = true;
+            // 
+            // Marka
+            // 
+            this.Marka.HeaderText = "Marka";
+            this.Marka.Name = "Marka";
+            this.Marka.ReadOnly = true;
+            // 
+            // Model
+            // 
+            this.Model.HeaderText = "Model";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            // 
+            // Imie
+            // 
+            this.Imie.HeaderText = "Imie";
+            this.Imie.Name = "Imie";
+            this.Imie.ReadOnly = true;
+            // 
+            // Nazwisko
+            // 
+            this.Nazwisko.HeaderText = "Nazwisko";
+            this.Nazwisko.Name = "Nazwisko";
+            this.Nazwisko.ReadOnly = true;
+            // 
+            // NaIleGodzin
+            // 
+            this.NaIleGodzin.HeaderText = "NaileGodzin";
+            this.NaIleGodzin.Name = "NaIleGodzin";
+            this.NaIleGodzin.ReadOnly = true;
+            // 
+            // ZakonczonoWyp
+            // 
+            this.ZakonczonoWyp.HeaderText = "Zakończono Wypożyczenie?";
+            this.ZakonczonoWyp.Name = "ZakonczonoWyp";
+            this.ZakonczonoWyp.ReadOnly = true;
             // 
             // label3
             // 
@@ -109,6 +151,7 @@
             this.MenuGlowne.TabIndex = 65;
             this.MenuGlowne.Text = "Powrót do Menu Głównego";
             this.MenuGlowne.UseVisualStyleBackColor = true;
+            this.MenuGlowne.Click += new System.EventHandler(this.MenuGlowne_Click);
             // 
             // wyswietlquerry
             // 
@@ -138,48 +181,6 @@
             this.label2.Size = new System.Drawing.Size(267, 19);
             this.label2.TabIndex = 68;
             this.label2.Text = "Lista wypożyczeń samochodów:";
-            // 
-            // idWypozyczenia
-            // 
-            this.idWypozyczenia.HeaderText = "id Wypożyczenia";
-            this.idWypozyczenia.Name = "idWypozyczenia";
-            this.idWypozyczenia.ReadOnly = true;
-            // 
-            // Marka
-            // 
-            this.Marka.HeaderText = "Marka";
-            this.Marka.Name = "Marka";
-            this.Marka.ReadOnly = true;
-            // 
-            // Model
-            // 
-            this.Model.HeaderText = "Model";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            // 
-            // Imie
-            // 
-            this.Imie.HeaderText = "Imie";
-            this.Imie.Name = "Imie";
-            this.Imie.ReadOnly = true;
-            // 
-            // Nazwisko
-            // 
-            this.Nazwisko.HeaderText = "Nazwisko";
-            this.Nazwisko.Name = "Nazwisko";
-            this.Nazwisko.ReadOnly = true;
-            // 
-            // NaIleGodzin
-            // 
-            this.NaIleGodzin.HeaderText = "NaileGodzin";
-            this.NaIleGodzin.Name = "NaIleGodzin";
-            this.NaIleGodzin.ReadOnly = true;
-            // 
-            // ZakonczonoWyp
-            // 
-            this.ZakonczonoWyp.HeaderText = "Zakończono Wypożyczenie?";
-            this.ZakonczonoWyp.Name = "ZakonczonoWyp";
-            this.ZakonczonoWyp.ReadOnly = true;
             // 
             // ZarządzanieWypozyczeniami
             // 

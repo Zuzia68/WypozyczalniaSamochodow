@@ -65,5 +65,12 @@ namespace Wypozyczalnia_Samochodow
 
             }
         }
+
+        private void MenuGlowne_Click(object sender, EventArgs e) //Powrot do menu głownego
+        {
+            MenuGlowne m1 = new MenuGlowne();
+            this.Hide();//
+            m1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
+        }
     }
 }
