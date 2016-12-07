@@ -96,6 +96,8 @@
             // 
             // WyswietlKlientow
             // 
+            this.WyswietlKlientow.AllowUserToAddRows = false;
+            this.WyswietlKlientow.AllowUserToDeleteRows = false;
             this.WyswietlKlientow.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.WyswietlKlientow.ColumnHeadersHeight = 26;
             this.WyswietlKlientow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -105,6 +107,7 @@
             this.dataGridViewTextBoxColumn4});
             this.WyswietlKlientow.Location = new System.Drawing.Point(12, 377);
             this.WyswietlKlientow.Name = "WyswietlKlientow";
+            this.WyswietlKlientow.ReadOnly = true;
             this.WyswietlKlientow.Size = new System.Drawing.Size(436, 165);
             this.WyswietlKlientow.TabIndex = 50;
             // 
@@ -112,21 +115,25 @@
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "id";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Imie";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Nazwisko";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Telefon";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // label3
             // 

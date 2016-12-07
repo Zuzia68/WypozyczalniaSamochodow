@@ -43,9 +43,9 @@ namespace Wypozyczalnia_Samochodow
             try
             {
                 connection.Open();
-                //MessageBox.Show("Pobrano dane! \nZostales polaczony z serwerem");
+                MessageBox.Show("Pobrano dane! \nZostales polaczony z serwerem");
                 return true;
-            }
+            }/*
             catch (MySqlException ex)
             {
                 //When handling errors, you can your application's response based on the error number.
@@ -64,7 +64,12 @@ namespace Wypozyczalnia_Samochodow
                         break;
                 }
                 return false;
-            }
+            }*/
+            catch (MySqlException)
+                {
+                    MessageBox.Show("Problem z połączeniem do BazyDanych.\nSprawdź połączenie internetowe \nSkontaktuj się z administratorem!");
+                }
+            return false;
         }
         #endregion
 

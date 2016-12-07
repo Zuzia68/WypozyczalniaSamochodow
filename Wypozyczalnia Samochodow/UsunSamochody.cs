@@ -62,10 +62,21 @@ namespace Wypozyczalnia_Samochodow
 
         public void UsunSamochod_Click(object sender, EventArgs e)
         {
-            idUsuwane = int.Parse(txtWejscie.Text);
-            dbConnect.UsuwanieSamochodow(idUsuwane);//Przekazuje zmienna idUsuwane do metody usuwającej rekord o danym id z bazy danych
-            //Ponowne wypisanie listy samochodów tym razem po usunięciu danego rekordu
-            List<string>[] list;
+           
+            int idUsuwane;
+            bool successfullyParsed = int.TryParse(txtWejscie.Text, out idUsuwane);
+            if (successfullyParsed)
+            {
+                
+                dbConnect.UsuwanieSamochodow(idUsuwane);//Przekazuje zmienna idUsuwane do metody usuwającej rekord o danym id z bazy danych
+            }
+            else
+            {
+                MessageBox.Show("Podana wartość nie jest liczbą!");
+            }
+
+
+            List<string>[] list; //Ponowne wypisanie listy samochodów tym razem po usunięciu danego rekordu
             list = dbConnect.SelectWszystkie();
             WyswietlDG1.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
