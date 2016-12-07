@@ -52,10 +52,18 @@ namespace Wypozyczalnia_Samochodow
 
         private void Wypozycz_Click(object sender, EventArgs e)
         {
-            idSamochodu = int.Parse(txtIdAuta.Text);
-            idKlienta = int.Parse(txtIdKlienta.Text);
-            ileGodzin = int.Parse(txtIle.Text);
-            dbConnect.WypozyczanieSamochodow(idKlienta, idSamochodu, ileGodzin);
+            
+            bool successfullyParsed = int.TryParse(txtIdAuta.Text, out idSamochodu);
+            bool successfullyParsed2 = int.TryParse(txtIdKlienta.Text, out idKlienta);
+            bool successfullyParsed3 = int.TryParse(txtIle.Text, out ileGodzin);
+            if (successfullyParsed && successfullyParsed2 && successfullyParsed3)//Jeśli podane IdAuta,IdKliena jest liczbą to wyślij te dane do metody Wypożyczającej Auta
+            {
+                dbConnect.WypozyczanieSamochodow(idKlienta, idSamochodu, ileGodzin);
+            }
+            else
+            {
+                MessageBox.Show("Podane wartości muszą być liczbami!");
+            }
         }
 
         private void MenuGlowne_Click(object sender, EventArgs e)

@@ -44,12 +44,28 @@ namespace Wypozyczalnia_Samochodow
 
         private void DodajSamochod_Click(object sender, EventArgs e)
         {
-            marka = txtMarka.Text;
-            model = txtModel.Text;
-            kolor = txtKolor.Text;
-            rocznik = int.Parse(txtRocznik.Text);
-            cena = float.Parse(txtCena.Text);
-            dbConnect.DodawanieSamochodow(marka, model, kolor, rocznik, cena);//Przekazuje zmienne do metody dodającej rekord do bazy danych
+            if (String.IsNullOrEmpty(txtMarka.Text) || String.IsNullOrEmpty(txtModel.Text) || String.IsNullOrEmpty(txtKolor.Text))//Jeśli nic nie wpisano to wyświetl kompunikat
+            {
+                MessageBox.Show("Podano pusty rekord!");
+            }
+            else
+            {
+                marka = txtMarka.Text;
+                model = txtModel.Text;
+                kolor = txtKolor.Text;
+                bool successfullyParsed = int.TryParse(txtRocznik.Text, out rocznik);
+                bool successfullyParsed2 = float.TryParse(txtCena.Text, out cena);
+                if (successfullyParsed && successfullyParsed2)
+                {
+                    dbConnect.DodawanieSamochodow(marka, model, kolor, rocznik, cena);//Przekazuje zmienne do metody dodającej samochod do bazy danych
+                }
+                else
+                {
+                    MessageBox.Show("Pole rocznik,cena musi być liczbą!");
+                }
+            }
+            
+            
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectWszystkie();

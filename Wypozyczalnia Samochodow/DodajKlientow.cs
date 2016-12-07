@@ -36,11 +36,17 @@ namespace Wypozyczalnia_Samochodow
 
         private void dodajklienta_Click(object sender, EventArgs e)
         {
-            imie = txtImie.Text;
-            nazwisko = txtNazwisko.Text;
-            telefon = txtNumerTelefonu.Text;
-
-            dbConnect.DodawanieKlientow(imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
+            if (String.IsNullOrEmpty(txtImie.Text) || String.IsNullOrEmpty(txtNazwisko.Text) || String.IsNullOrEmpty(txtNumerTelefonu.Text))//Jeśli nic nie wpisano to wyświetl kompunikat
+                {
+                    MessageBox.Show("Podano niepoprawne dane!");
+                }
+            else
+            {
+                imie = txtImie.Text;
+                nazwisko = txtNazwisko.Text;
+                telefon = txtNumerTelefonu.Text;
+                dbConnect.DodawanieKlientow(imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
+            }
             //Ponowne wyświetlenie listy klientów, po dodaniu nowego klienta
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();

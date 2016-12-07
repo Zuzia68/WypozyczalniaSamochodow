@@ -43,12 +43,26 @@ namespace Wypozyczalnia_Samochodow
 
         private void modyfikacjadanych_Click(object sender, EventArgs e)
         {
-            IdZmiany = int.Parse(txtIdZmiany.Text);
-            imie = txtImieZmiany.Text;
-            nazwisko = txtNazwiskoZmiany.Text;
-            telefon = txtTelefonZmiany.Text;
+            if (String.IsNullOrEmpty(txtImieZmiany.Text) || String.IsNullOrEmpty(txtNazwiskoZmiany.Text) || String.IsNullOrEmpty(txtTelefonZmiany.Text))//Jeśli nic nie wpisano to wyświetl kompunikat
+            {
+                MessageBox.Show("Podano niepoprawne dane!");
+            }
+            else
+            {
+                imie = txtImieZmiany.Text;
+                nazwisko = txtNazwiskoZmiany.Text;
+                telefon = txtTelefonZmiany.Text;
+            }
+            bool successfullyParsed = int.TryParse(txtIdZmiany.Text, out IdZmiany);
+            if (successfullyParsed)
+            {
+                dbConnect.AktualizacjaDanych(IdZmiany, imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
+            }
+            else
+            {
+                MessageBox.Show("Wartośc id klienta musi być liczbą!");
+            }
 
-            dbConnect.AktualizacjaDanych(IdZmiany,imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
@@ -67,9 +81,15 @@ namespace Wypozyczalnia_Samochodow
 
         private void usunKlienta_Click(object sender, EventArgs e)
         {
-            idKlientaUsuwanego = int.Parse(txtIdUsuwane.Text);
-            txtpokapoka.Text = "Id do usunięcia: " + (idKlientaUsuwanego);
-            dbConnect.UsuwanieKlientow(idKlientaUsuwanego);
+            bool successfullyParsed = int.TryParse(txtIdUsuwane.Text, out idKlientaUsuwanego);
+            if (successfullyParsed)
+            {
+                dbConnect.UsuwanieKlientow(idKlientaUsuwanego);//Jeśli podane idKlienta jest liczba to wyslij je do metody usuwanieKlientow
+            }
+            else
+            {
+                MessageBox.Show("Wartośc id klienta musi być liczbą!");
+            }
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
 

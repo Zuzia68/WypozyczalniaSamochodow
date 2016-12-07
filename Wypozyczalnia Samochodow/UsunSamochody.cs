@@ -74,8 +74,6 @@ namespace Wypozyczalnia_Samochodow
             {
                 MessageBox.Show("Podana wartość nie jest liczbą!");
             }
-
-
             List<string>[] list; //Ponowne wypisanie listy samochodów tym razem po usunięciu danego rekordu
             list = dbConnect.SelectWszystkie();
             WyswietlDG1.Rows.Clear();
