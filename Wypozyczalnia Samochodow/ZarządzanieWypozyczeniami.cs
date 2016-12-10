@@ -35,21 +35,29 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlWypo.Rows[number].Cells[5].Value = list[5][i];
                 WyswietlWypo.Rows[number].Cells[6].Value = list[6][i];
             }
-
         }
 
         private void AktualizacjaDanych_Click(object sender, EventArgs e)
         {
-            Status = txtZakonczono.Text;
-            bool successfullyParsed = int.TryParse(txtIdZmiany.Text, out IdZmiany);
-            if (successfullyParsed)
+            if (String.IsNullOrEmpty(txtZakonczono.Text))//Jeśli nic nie wpisano to wyświetl kompunikat
             {
-                dbConnect.ZmianaStatusu(IdZmiany, Status);
+                MessageBox.Show("Podano niepoprawne dane!");
             }
             else
             {
-                MessageBox.Show("Wartośc id musi być liczbą!");
+                bool successfullyParsed = int.TryParse(txtIdZmiany.Text, out IdZmiany);
+                if (successfullyParsed)
+                {
+                    Status = txtZakonczono.Text;
+                    dbConnect.ZmianaStatusu(IdZmiany, Status);
+                    MessageBox.Show("Dokonano aktualizacji danych!");
+                }
+                else
+                {
+                    MessageBox.Show("Wartośc id musi być liczbą!");
+                }
             }
+
             //Poniżej wyświetlam listę wypożyczeń
             List<string>[] list;
             list = dbConnect.PokazWypozyczenia();
@@ -77,7 +85,7 @@ namespace Wypozyczalnia_Samochodow
 
         private void ZarządzanieWypozyczeniami_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();//Zamknięcie aplikacji po zamknięciu formularza
         }
     }
 }

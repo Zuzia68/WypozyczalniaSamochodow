@@ -16,11 +16,9 @@ namespace Wypozyczalnia_Samochodow
         private string database;
         private string uid;
         private string password;
-  
-
 
         #region inicjalizacja połączenia z zewnętrzną bazą danych
-        //Constructor
+        //Konstruktor
         public BazaDanychPolaczenie()
         {
             Initialize();
@@ -36,14 +34,13 @@ namespace Wypozyczalnia_Samochodow
             connection = new MySqlConnection(connectionString);
         }
         #endregion
-
         #region otworzenie połączenia z zewnętrzną bazą danych
         private bool OpenConnection()
         {
             try
             {
                 connection.Open();
-                MessageBox.Show("Zostales polaczony z serwerem.");
+                //MessageBox.Show("Zostales polaczony z serwerem.");
                 return true;
             }
             catch (MySqlException)//Zastosowanie wyjątku w razie braku połączenia z bazą danych
@@ -53,7 +50,6 @@ namespace Wypozyczalnia_Samochodow
             return false;
         }
         #endregion
-
         #region Zamknięcie połączenia z zewnętrzną Bazą danych
         private bool CloseConnection()
         {
@@ -64,17 +60,15 @@ namespace Wypozyczalnia_Samochodow
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);//Wyjątek na nie zamknięcie połączenia
                 return false;
             }
         }
         #endregion
-
         #region Wyswietlenie danych z tabeli dla przycisku Ford
         public List<string>[] SelectFord()
         {
             string query = "SELECT * FROM NaszeSamochody where Marka='Ford'";
-
             //Create a list to store the result
             List<string>[] list = new List<string>[6];
             list[0] = new List<string>();
@@ -118,7 +112,6 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
-
         #region Wyswietlenie danych z tabeli dla przycisku Nissan
         public List<string>[] SelectNissan()
         {
@@ -216,7 +209,6 @@ namespace Wypozyczalnia_Samochodow
             }
         }
         #endregion
-
         #region Wyswietlenie danych z tabeli dla przycisku Ferrari
         public List<string>[] SelectFerrari()
         {
@@ -366,7 +358,6 @@ namespace Wypozyczalnia_Samochodow
 
         }
         #endregion
-
         #region Wyswietlanie dostępnych samochodow
         //Query jest napisane głownie do formularza WypozyczanieSamochodow gdzie muszę wyświetlić auta które faktycznie są w wypożyczalni
         public List<string>[] SelectDostepne()
@@ -438,9 +429,9 @@ namespace Wypozyczalnia_Samochodow
         #endregion
 
         #region Usuwanie samochodów
-        public void UsuwanieSamochodow(int MDK)
+        public void UsuwanieSamochodow(int idUsuwane)
         {
-            string query = "delete from NaszeSamochody WHERE idSamochodu=('" + MDK + "')";
+            string query = "delete from NaszeSamochody WHERE idSamochodu=('" + idUsuwane + "')";
             //open connection
             if (this.OpenConnection() == true)
             {
@@ -565,7 +556,8 @@ namespace Wypozyczalnia_Samochodow
         {
             string query = "INSERT INTO Wypozyczenia (idSamochodu,idKlienta,NaIleGodzin) VALUES ('" + idSamochodu + "','" + idKlienta + "','" + NaIleGodzin + "')";
             string query2 = "UPDATE NaszeSamochody Set CzyZwrocono = 'nie' where idSamochodu = ('"+idSamochodu+"')";
-
+            //Przy wypożyczeniu samochodu dla klienta dodajemy nowy wpis wypozyczenia do bazy (query)
+            //Dodatkowo każdy nowo wypożyczony samochód otrzymuje status "Nie zwrócono"
             //open connection
             if (this.OpenConnection() == true)
             {
@@ -638,6 +630,7 @@ namespace Wypozyczalnia_Samochodow
         public void ZmianaStatusu(int IdZmiany, string Status)
         {
             string query2 = "UPDATE NaszeSamochody SET CzyZwrocono=('" + Status + "') WHERE NaszeSamochody.idSamochodu=( SELECT Wypozyczenia.idSamochodu FROM Wypozyczenia WHERE Wypozyczenia.idWypozyczenia=('"+IdZmiany+"'))";
+            //Query służy do określenia czy samochód wypożyczony został zwrócony do Wypożyczalni
             //open connection
             if (this.OpenConnection() == true)
             {

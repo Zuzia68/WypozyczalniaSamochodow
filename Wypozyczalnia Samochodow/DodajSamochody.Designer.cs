@@ -65,7 +65,6 @@
             this.WyswietlDG1.Name = "WyswietlDG1";
             this.WyswietlDG1.Size = new System.Drawing.Size(645, 324);
             this.WyswietlDG1.TabIndex = 3;
-            this.WyswietlDG1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.WyswietlDG1_CellContentClick);
             // 
             // id
             // 

@@ -23,7 +23,6 @@ namespace Wypozyczalnia_Samochodow
             //Stworzenie polączenia przy wejściu w formularz i wypisanie wszystkich rekordów z bazy
             List<string>[] list;
             list = dbConnect.SelectWszystkie();
-
             WyswietlDG1.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -37,11 +36,6 @@ namespace Wypozyczalnia_Samochodow
             }
         }
 
-        private void WyswietlDG1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void DodajSamochod_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtMarka.Text) || String.IsNullOrEmpty(txtModel.Text) || String.IsNullOrEmpty(txtKolor.Text))//Jeśli nic nie wpisano to wyświetl kompunikat
@@ -53,23 +47,22 @@ namespace Wypozyczalnia_Samochodow
                 marka = txtMarka.Text;
                 model = txtModel.Text;
                 kolor = txtKolor.Text;
-                bool successfullyParsed = int.TryParse(txtRocznik.Text, out rocznik);
-                bool successfullyParsed2 = float.TryParse(txtCena.Text, out cena);
+                bool successfullyParsed = int.TryParse(txtRocznik.Text, out rocznik);//Sprawdzenie czy rocznik jest typu int
+                bool successfullyParsed2 = float.TryParse(txtCena.Text, out cena);//Sprawdzenie czy cena jest typu float
                 if (successfullyParsed && successfullyParsed2)
                 {
                     dbConnect.DodawanieSamochodow(marka, model, kolor, rocznik, cena);//Przekazuje zmienne do metody dodającej samochod do bazy danych
+                    MessageBox.Show("Dodano nowego klienta!");
                 }
                 else
                 {
                     MessageBox.Show("Pole rocznik,cena musi być liczbą!");
                 }
             }
-            
-            
+
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectWszystkie();
-
             WyswietlDG1.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -89,7 +82,7 @@ namespace Wypozyczalnia_Samochodow
             Application.Exit();//Zamkniecie aplikacji po zamknieciu formularza
         }
 
-        private void MenuGlowne_Click(object sender, EventArgs e)
+        private void MenuGlowne_Click(object sender, EventArgs e)//Przycisk przejscie do menu glównego
         {
             MenuGlowne m1 = new MenuGlowne();
             this.Hide();//

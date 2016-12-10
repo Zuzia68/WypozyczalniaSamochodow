@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Wypozyczalnia_Samochodow
@@ -23,7 +17,6 @@ namespace Wypozyczalnia_Samochodow
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
-
             WyswietlKlientowDataG.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -32,13 +25,7 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlKlientowDataG.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlKlientowDataG.Rows[number].Cells[2].Value = list[2][i];
                 WyswietlKlientowDataG.Rows[number].Cells[3].Value = list[3][i];
-                
             }
-        }
-
-        private void WyswietlKlientowDataG_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void modyfikacjadanych_Click(object sender, EventArgs e)
@@ -52,21 +39,21 @@ namespace Wypozyczalnia_Samochodow
                 imie = txtImieZmiany.Text;
                 nazwisko = txtNazwiskoZmiany.Text;
                 telefon = txtTelefonZmiany.Text;
-            }
-            bool successfullyParsed = int.TryParse(txtIdZmiany.Text, out IdZmiany);
-            if (successfullyParsed)
-            {
-                dbConnect.AktualizacjaDanych(IdZmiany, imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
-            }
-            else
-            {
-                MessageBox.Show("Wartośc id klienta musi być liczbą!");
+                bool successfullyParsed = int.TryParse(txtIdZmiany.Text, out IdZmiany);//Sprawdzenie czy pola są typu int
+                if (successfullyParsed)
+                {
+                    dbConnect.AktualizacjaDanych(IdZmiany, imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
+                    MessageBox.Show("Dokonano aktualizacji danych!");
+                }
+                else
+                {
+                    MessageBox.Show("Wartośc id klienta musi być liczbą!");
+                }
             }
 
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
-
             WyswietlKlientowDataG.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -75,7 +62,6 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlKlientowDataG.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlKlientowDataG.Rows[number].Cells[2].Value = list[2][i];
                 WyswietlKlientowDataG.Rows[number].Cells[3].Value = list[3][i];
-
             }
         }
 
@@ -92,7 +78,6 @@ namespace Wypozyczalnia_Samochodow
             }
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
-
             WyswietlKlientowDataG.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -101,7 +86,6 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlKlientowDataG.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlKlientowDataG.Rows[number].Cells[2].Value = list[2][i];
                 WyswietlKlientowDataG.Rows[number].Cells[3].Value = list[3][i];
-
             }
         }
 

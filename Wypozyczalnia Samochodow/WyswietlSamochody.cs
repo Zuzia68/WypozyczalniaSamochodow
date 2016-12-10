@@ -16,14 +16,11 @@ namespace Wypozyczalnia_Samochodow
 
         public WyswietlSamochody()
         {
-           
-
             InitializeComponent();
             dbConnect = new BazaDanychPolaczenie();
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectWszystkie(); //Wyświetlanie wszystkich samochodów
-
             WyswietlDG1.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -36,31 +33,16 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
-        }
-        
         private void WyswietlSamochody_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit(); //Ta instrukcja jest do zamknięcia aplikacji gdy przejdziemy do drugiego formularza
         }
 
-        
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void pictureBox5_Click(object sender, EventArgs e) //Przycisk Ford
         {
-            
             //Select button is clicked
             List<string>[] list;
             list = dbConnect.SelectFord(); //Select Ford
-
             WyswietlDG1.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -90,7 +72,6 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[3].Value = list[3][i];
                 WyswietlDG1.Rows[number].Cells[4].Value = list[4][i];
                 WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
-                
             }
         }
 
@@ -151,12 +132,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
 
-        private void WyswietlDG1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void MenuGlowne_Click(object sender, EventArgs e)
+        private void MenuGlowne_Click(object sender, EventArgs e)//Przycis powrót do menu glownego
         {
             MenuGlowne m1 = new MenuGlowne();
             this.Hide();//

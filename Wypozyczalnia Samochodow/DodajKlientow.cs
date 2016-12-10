@@ -21,7 +21,6 @@ namespace Wypozyczalnia_Samochodow
             //Wyświetlenie listy wszystkich klientów wypożyczalni
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
-
             WyswietlKlientowDataG.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -30,7 +29,6 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlKlientowDataG.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlKlientowDataG.Rows[number].Cells[2].Value = list[2][i];
                 WyswietlKlientowDataG.Rows[number].Cells[3].Value = list[3][i];
-                
             }
         }
 
@@ -46,11 +44,11 @@ namespace Wypozyczalnia_Samochodow
                 nazwisko = txtNazwisko.Text;
                 telefon = txtNumerTelefonu.Text;
                 dbConnect.DodawanieKlientow(imie, nazwisko, telefon);//Przekazuje zmienne do metody dodającej rekord do bazy danych
+                MessageBox.Show("Dodano nowego klienta!");
             }
             //Ponowne wyświetlenie listy klientów, po dodaniu nowego klienta
             List<string>[] list;
             list = dbConnect.SelectALLKlienci();
-
             WyswietlKlientowDataG.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -59,9 +57,7 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlKlientowDataG.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlKlientowDataG.Rows[number].Cells[2].Value = list[2][i];
                 WyswietlKlientowDataG.Rows[number].Cells[3].Value = list[3][i];
-                
             }
-            
         }
 
         private void PowrotDoMenu_Click(object sender, EventArgs e)//Przycisk powrót do menu
@@ -89,6 +85,6 @@ namespace Wypozyczalnia_Samochodow
         {
             Application.Exit();//Po zamknięciu formularza zamykamy aplikacje
         }
-        }
+      }
     }
 

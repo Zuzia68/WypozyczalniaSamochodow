@@ -23,11 +23,10 @@ namespace Wypozyczalnia_Samochodow
             dbConnect = new BazaDanychPolaczenie();
             List<string>[] list;
             list = dbConnect.SelectWszystkie();
-
             WyswietlDG1.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
-                int number = WyswietlDG1.Rows.Add();
+                int number = WyswietlDG1.Rows.Add();//Wyświetlenie listy wszystkich samochodów
                 WyswietlDG1.Rows[number].Cells[0].Value = list[0][i];
                 WyswietlDG1.Rows[number].Cells[1].Value = list[1][i];
                 WyswietlDG1.Rows[number].Cells[2].Value = list[2][i];
@@ -55,10 +54,6 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDG1.Rows[number].Cells[5].Value = list[5][i];
             }
         }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         public void UsunSamochod_Click(object sender, EventArgs e)
         {
@@ -67,8 +62,8 @@ namespace Wypozyczalnia_Samochodow
             bool successfullyParsed = int.TryParse(txtWejscie.Text, out idUsuwane);
             if (successfullyParsed)
             {
-                
                 dbConnect.UsuwanieSamochodow(idUsuwane);//Przekazuje zmienna idUsuwane do metody usuwającej rekord o danym id z bazy danych
+                MessageBox.Show("Usuwanie samochodu.");
             }
             else
             {

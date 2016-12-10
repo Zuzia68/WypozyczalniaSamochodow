@@ -25,19 +25,14 @@ namespace Wypozyczalnia_Samochodow
             w1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Usun_Click(object sender, EventArgs e)
+        private void Usun_Click(object sender, EventArgs e)//Usun samochody
         {
             UsunSamochody u1 = new UsunSamochody();
             this.Hide();//
             u1.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)//Przycisk dodaj samochody
         {
             DodajSamochody d1 = new DodajSamochody();
             this.Hide();//
@@ -70,13 +65,11 @@ namespace Wypozyczalnia_Samochodow
             wyp.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)//Przejscie do zarzadzania samochodami
         {
             ZarządzanieWypozyczeniami zarz = new ZarządzanieWypozyczeniami();
             this.Hide();//
             zarz.ShowDialog();//Wyswietlanie 2 formularza i ukrywanie bieżącego.
-        }
-
-        
+        } 
     }
 }

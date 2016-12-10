@@ -66,7 +66,6 @@
             this.WyswietlKlientowDataG.Name = "WyswietlKlientowDataG";
             this.WyswietlKlientowDataG.Size = new System.Drawing.Size(440, 249);
             this.WyswietlKlientowDataG.TabIndex = 3;
-            this.WyswietlKlientowDataG.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.WyswietlKlientowDataG_CellContentClick);
             // 
             // id
             // 

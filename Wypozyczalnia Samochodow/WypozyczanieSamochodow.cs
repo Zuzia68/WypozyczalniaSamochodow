@@ -21,7 +21,6 @@ namespace Wypozyczalnia_Samochodow
             //Wyswietlenie listy samochodow
             List<string>[] list;
             list = dbConnect.SelectDostepne();
-
             WyswietlDostepne.Rows.Clear();
             for (int i = 0; i < list[0].Count; i++)
             {
@@ -33,11 +32,9 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlDostepne.Rows[number].Cells[4].Value = list[4][i];
                 WyswietlDostepne.Rows[number].Cells[5].Value = list[5][i];
             }
-
             //Wyswietlenie listy klientow
             List<string>[] list2;
             list2 = dbConnect.SelectALLKlienci();
-
             WyswietlKlientow.Rows.Clear();
             for (int i = 0; i < list2[0].Count; i++)
             {
@@ -46,19 +43,18 @@ namespace Wypozyczalnia_Samochodow
                 WyswietlKlientow.Rows[number].Cells[1].Value = list2[1][i];
                 WyswietlKlientow.Rows[number].Cells[2].Value = list2[2][i];
                 WyswietlKlientow.Rows[number].Cells[3].Value = list2[3][i];
-
             }
         }
 
         private void Wypozycz_Click(object sender, EventArgs e)
         {
-            
             bool successfullyParsed = int.TryParse(txtIdAuta.Text, out idSamochodu);
             bool successfullyParsed2 = int.TryParse(txtIdKlienta.Text, out idKlienta);
             bool successfullyParsed3 = int.TryParse(txtIle.Text, out ileGodzin);
             if (successfullyParsed && successfullyParsed2 && successfullyParsed3)//Jeśli podane IdAuta,IdKliena jest liczbą to wyślij te dane do metody Wypożyczającej Auta
             {
                 dbConnect.WypozyczanieSamochodow(idKlienta, idSamochodu, ileGodzin);
+                MessageBox.Show("Auto zostało wypożyczone.\nAby przejrzeć wypożyczenia kliknij w Zarządzaj Wypożyczeniami.");
             }
             else
             {
@@ -66,7 +62,7 @@ namespace Wypozyczalnia_Samochodow
             }
         }
 
-        private void MenuGlowne_Click(object sender, EventArgs e)
+        private void MenuGlowne_Click(object sender, EventArgs e)//Przycisk przejscie do MenuGlownego
         {
             MenuGlowne m1 = new MenuGlowne();
             this.Hide();//
@@ -82,7 +78,7 @@ namespace Wypozyczalnia_Samochodow
 
         private void WypozyczanieSamochodow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();//Przy zamknieciu formularza zamknij aplikacje
         }
     }
 }
