@@ -13,9 +13,9 @@ namespace Wypozyczalnia_Samochodow
     public partial class DodajSamochody : Form
     {
         private BazaDanychPolaczenie dbConnect;
-        public string marka, model, kolor;
-        public float cena;
-        public int rocznik;
+        private string marka, model, kolor;
+        private float cena;
+        private int rocznik;
         public DodajSamochody()
         {
             InitializeComponent();
@@ -52,7 +52,7 @@ namespace Wypozyczalnia_Samochodow
                 if (successfullyParsed && successfullyParsed2)
                 {
                     dbConnect.DodawanieSamochodow(marka, model, kolor, rocznik, cena);//Przekazuje zmienne do metody dodającej samochod do bazy danych
-                    MessageBox.Show("Dodano nowego klienta!");
+                    MessageBox.Show("Dodano nowy samochód!");
                 }
                 else
                 {

@@ -13,7 +13,7 @@ namespace Wypozyczalnia_Samochodow
     public partial class DodajKlientow : Form
     {
         private BazaDanychPolaczenie dbConnect;
-        public string imie, nazwisko, telefon;
+        private string imie, nazwisko, telefon;
         public DodajKlientow()
         {
             InitializeComponent();

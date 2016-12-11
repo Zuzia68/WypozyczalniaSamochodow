@@ -7,9 +7,9 @@ namespace Wypozyczalnia_Samochodow
     public partial class ModyfikacjaKlientow : Form
     {
         private BazaDanychPolaczenie dbConnect;
-        public string imie, nazwisko, telefon;
-        public int idKlientaUsuwanego;
-        public int IdZmiany;
+        private string imie, nazwisko, telefon;
+        private int idKlientaUsuwanego;
+        private int IdZmiany;
         public ModyfikacjaKlientow()
         {
             InitializeComponent();

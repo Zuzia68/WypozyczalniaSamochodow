@@ -16,7 +16,6 @@ namespace Wypozyczalnia_Samochodow
     public partial class UsunSamochody : Form
     {
         private BazaDanychPolaczenie dbConnect;
-        public int idUsuwane;
         public UsunSamochody()
         {
             InitializeComponent();

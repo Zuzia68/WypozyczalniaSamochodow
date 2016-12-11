@@ -13,7 +13,7 @@ namespace Wypozyczalnia_Samochodow
     public partial class WypozyczanieSamochodow : Form
     {
         private BazaDanychPolaczenie dbConnect;
-        public int idSamochodu, idKlienta, ileGodzin;
+        private int idSamochodu, idKlienta, ileGodzin;
         public WypozyczanieSamochodow()
         {
             InitializeComponent();

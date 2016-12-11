@@ -13,8 +13,8 @@ namespace Wypozyczalnia_Samochodow
     public partial class ZarządzanieWypozyczeniami : Form
     {
         private BazaDanychPolaczenie dbConnect;
-        public int IdZmiany;
-        public string Status;
+        private int IdZmiany;
+        private string Status;
         public ZarządzanieWypozyczeniami()
         {
             InitializeComponent();
